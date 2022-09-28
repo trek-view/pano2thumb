@@ -64,7 +64,7 @@ def createParser():
     parser.add_argument('--longitude', dest='longitude', help='longitude of view', default='0')
     parser.add_argument('--latitude', dest='latitude', help='latitude of view', default='0')
     parser.add_argument('--output', dest='output_filename', help='specify the filename of the thumbnail image', default='output.png')
-    parser.add_argument('--focal_length', dest='focal_length', help='focal length of thumbnail view', default='100')
+    parser.add_argument('--fov_width', dest='fov_width', help='field of view in width direction', default='60')
     parser.add_argument('--width', dest='width', help='width of thumbnail', default='200')
     parser.add_argument('--height', dest='height', help='height of thumbnail', default='200')
 
@@ -81,8 +81,10 @@ if __name__ == "__main__":
 
     print(img.shape)
     input_resolution = img.shape[0:2]
-    focal_length = np.array([float(args.focal_length)] * 2)
+    # focal_length = np.array([float(args.focal_length)] * 2)
     output_resolution = np.array([int(args.height), int(args.width)])
+    focal_length = float(args.width) / np.tan(0.5 * float(args.fov_width) * np.pi / 180.) * 0.5
+    focal_length = [focal_length] * 2
     img_out = []
 
     output_px_coord = []

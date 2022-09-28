@@ -1,5 +1,9 @@
 # Test files
 *.jpg
 
+# Venv from docs
+
+pano2thumb_venv
+
 # OS or Editor folders
 .DS_Store
